@@ -55,7 +55,7 @@
                     </nav>
                 </div>
                 <!-- Client -->
-                <a class="nav-link" href="client.html">
+                <a class="nav-link" href="{{ route('client') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                     Klien
                 </a>

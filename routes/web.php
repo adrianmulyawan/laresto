@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\CategoryMenuController;
 use App\Http\Controllers\Admin\CateringInfoController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ListMenuController;
 use App\Http\Controllers\Admin\OurAdvantagesController;
@@ -70,4 +71,6 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/menu', [ListMenuController::class, 'index'])->name('menu-catering');
     Route::get('/menu/add', [ListMenuController::class, 'create'])->name('add-menu-catering');
+
+    Route::get('/client', [ClientController::class, 'index'])->name('client');
 });
