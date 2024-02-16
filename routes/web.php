@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\CategoryMenuController;
 use App\Http\Controllers\Admin\CateringInfoController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ListMenuController;
 use App\Http\Controllers\Admin\OurAdvantagesController;
 use App\Http\Controllers\Admin\OurGalleryController;
 use App\Http\Controllers\Admin\OurHistoryController;
@@ -66,4 +67,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/package/add', [PackageCateringController::class, 'create'])->name('add-package-catering');
 
     Route::get('/category', [CategoryMenuController::class, 'index'])->name('category-catering');
+
+    Route::get('/menu', [ListMenuController::class, 'index'])->name('menu-catering');
+    Route::get('/menu/add', [ListMenuController::class, 'create'])->name('add-menu-catering');
 });

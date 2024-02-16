@@ -51,7 +51,7 @@
                 <div class="collapse" id="news" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('category-catering') }}">Kategori Catering</a>
-                        <a class="nav-link" href="menu-catering.html">Menu Catering</a>
+                        <a class="nav-link" href="{{ route('menu-catering') }}">Menu Catering</a>
                     </nav>
                 </div>
                 <!-- Client -->
