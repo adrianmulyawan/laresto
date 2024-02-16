@@ -40,10 +40,10 @@
                     <a class="nav-link" href="{{ route('menu') }}">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="package.html">Paket</a>
+                    <a class="nav-link" href="{{ route('package') }}">Paket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
+                    <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-download px-4 py-2 ms-3" href="/">Download Brosur</a>

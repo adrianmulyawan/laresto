@@ -1,8 +1,18 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\CateringInfoController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OurAdvantagesController;
+use App\Http\Controllers\Admin\OurGalleryController;
+use App\Http\Controllers\Admin\OurHistoryController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DetailBlogController;
+use App\Http\Controllers\DetailMenuController;
+use App\Http\Controllers\DetailPackageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +33,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/menu', MenuController::class)->name('menu');
+Route::get('/menu/detail/{slug}', DetailMenuController::class)->name('detail-menu');
+Route::get('/package', PackageController::class)->name('package');
+Route::get('/package/detail/{slug}', DetailPackageController::class)->name('detail-package');
+Route::get('/blog', BlogController::class)->name('blog');
+Route::get('/blog/detail/{slug}', DetailBlogController::class)->name('detail-blog');
+
+// ==========================================================================================
+
+Route::prefix('/dashboard')->group(function () {
+    Route::get('/', DashboardController::class)->name('dashboard');
+
+    Route::get('/catering/info', [CateringInfoController::class, 'index'])->name('catering-info');
+    Route::get('/catering/info/add', [CateringInfoController::class, 'create'])->name('add-catering-info');
+
+    Route::get('/catering/advantage', [OurAdvantagesController::class, 'index'])->name('advantage');
+    Route::get('/catering/advantage/add', [OurAdvantagesController::class, 'create'])->name('add-advantage');
+
+    Route::get('/catering/history', [OurHistoryController::class, 'index'])->name('history');
+    Route::get('/catering/history/add', [OurHistoryController::class, 'create'])->name('add-history');
+
+    Route::get('/catering/gallery', [OurGalleryController::class, 'index'])->name('gallery');
+    Route::get('/catering/gallery/add', [OurGalleryController::class, 'create'])->name('add-gallery');
+});
