@@ -32,12 +32,12 @@
                     </nav>
                 </div>
                 <!-- Layanan -->
-                <a class="nav-link" href="service.html">
+                <a class="nav-link" href="{{ route('service') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-star"></i></div>
                     Layanan Kami
                 </a>
                 <!-- Paket Katering -->
-                <a class="nav-link" href="package-catering.html">
+                <a class="nav-link" href="{{ route('package-catering') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
                     Paket Catering
                 </a>
@@ -50,7 +50,7 @@
                 </a>
                 <div class="collapse" id="news" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="catering-category.html">Kategori Catering</a>
+                        <a class="nav-link" href="{{ route('category-catering') }}">Kategori Catering</a>
                         <a class="nav-link" href="menu-catering.html">Menu Catering</a>
                     </nav>
                 </div>
