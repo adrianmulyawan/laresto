@@ -75,7 +75,7 @@
                     FAQs
                 </a>
                 <!-- Pertanyaan Pelanggan -->
-                <a class="nav-link" href="faq.html">
+                <a class="nav-link" href="{{ route('question') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-person-circle-question"></i></div>
                     Pertanyaan
                 </a>

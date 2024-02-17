@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\OurHistoryController;
 use App\Http\Controllers\Admin\PackageCateringController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\UserQuestionController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DetailBlogController;
 use App\Http\Controllers\DetailMenuController;
@@ -83,4 +84,6 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/blog/add', [AdminBlogController::class, 'create'])->name('add-blog-dashboard');
 
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+
+    Route::get('/question', [UserQuestionController::class, 'index'])->name('question');
 });
