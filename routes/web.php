@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryMenuController;
 use App\Http\Controllers\Admin\CateringInfoController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ListMenuController;
 use App\Http\Controllers\Admin\OurAdvantagesController;
 use App\Http\Controllers\Admin\OurGalleryController;
 use App\Http\Controllers\Admin\OurHistoryController;
 use App\Http\Controllers\Admin\PackageCateringController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DetailBlogController;
 use App\Http\Controllers\DetailMenuController;
@@ -73,4 +76,11 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/menu/add', [ListMenuController::class, 'create'])->name('add-menu-catering');
 
     Route::get('/client', [ClientController::class, 'index'])->name('client');
+
+    Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
+
+    Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog-dashboard');
+    Route::get('/blog/add', [AdminBlogController::class, 'create'])->name('add-blog-dashboard');
+
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 });

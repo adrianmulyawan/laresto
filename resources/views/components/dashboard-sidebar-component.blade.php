@@ -60,17 +60,17 @@
                     Klien
                 </a>
                 <!-- Testimonial -->
-                <a class="nav-link" href="testimonial.html">
+                <a class="nav-link" href="{{ route('testimonial') }}">
                     <div class="sb-nav-link-icon"><i class="fa-regular fa-comment"></i></div>
                     Testimonial
                 </a>
                 <!-- Blog -->
-                <a class="nav-link" href="blog.html">
+                <a class="nav-link" href="{{ route('blog-dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fa-regular fa-note-sticky"></i></div>
                     Blog
                 </a>
                 <!-- FAQs -->
-                <a class="nav-link" href="faq.html">
+                <a class="nav-link" href="{{ route('faq') }}">
                     <div class="sb-nav-link-icon"><i class="fa-regular fa-circle-question"></i></div>
                     FAQs
                 </a>
