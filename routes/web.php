@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\OurGalleryController;
 use App\Http\Controllers\Admin\OurHistoryController;
 use App\Http\Controllers\Admin\PackageCateringController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingAccountController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserQuestionController;
 use App\Http\Controllers\BlogController;
@@ -86,4 +87,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
     Route::get('/question', [UserQuestionController::class, 'index'])->name('question');
+
+    Route::get('/profile', [SettingAccountController::class, 'profile'])->name('profile');
+    Route::get('/change-password', [SettingAccountController::class, 'changePassword'])->name('change-password');
 });
