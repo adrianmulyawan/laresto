@@ -57,7 +57,7 @@ Route::get('/blog/detail/{slug}', DetailBlogController::class)->name('detail-blo
 
 // ==========================================================================================
 
-Route::prefix('/dashboard')->group(function () {
+Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
     Route::get('/catering/info', [CateringInfoController::class, 'index'])->name('catering-info');
