@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingAccountController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserQuestionController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DetailBlogController;
 use App\Http\Controllers\DetailMenuController;
@@ -40,6 +41,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/masuk', [AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::post('/masuk', [AuthController::class, 'loginProcess'])->middleware('guest')->name('login.process');
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/about', AboutController::class)->name('about');

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <header data-aos="fade-down">
         <x-nav-menu-component></x-nav-menu-component>
 
