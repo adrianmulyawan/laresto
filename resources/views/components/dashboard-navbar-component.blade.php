@@ -6,7 +6,7 @@
             class="fas fa-bars"></i></button>
     <!-- User Login Name -->
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-2 my-2 my-md-0">
-        <p class="text-white my-2">Hello, Adrian</p>
+        <p class="text-white my-2">Hello, {{ Auth::user()->name }}</p>
     </div>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -19,7 +19,12 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item">Logout</a></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
+                </li>
             </ul>
         </li>
     </ul>

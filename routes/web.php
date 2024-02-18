@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/masuk', [AuthController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/masuk', [AuthController::class, 'loginProcess'])->middleware('guest')->name('login.process');
+Route::post('/keluar', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/about', AboutController::class)->name('about');
