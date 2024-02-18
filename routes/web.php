@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryMenuController;
 use App\Http\Controllers\Admin\CateringInfoController;
@@ -65,6 +66,8 @@ Route::prefix('/dashboard')->group(function () {
 
     Route::get('/catering/gallery', [OurGalleryController::class, 'index'])->name('gallery');
     Route::get('/catering/gallery/add', [OurGalleryController::class, 'create'])->name('add-gallery');
+
+    Route::get('/catering/banner', [BannerController::class, 'index'])->name('banner');
 
     Route::get('/service', [ServiceController::class, 'index'])->name('service');
     // Route::get('/service/add', [ServiceController::class, 'create'])->name('add-service');

@@ -30,6 +30,9 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('gallery') }}">Gallery</a>
                     </nav>
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('banner') }}">Banner</a>
+                    </nav>
                 </div>
                 <!-- Layanan -->
                 <a class="nav-link" href="{{ route('service') }}">
