@@ -11,9 +11,12 @@ class AuthController extends Controller
 {
     public function login()
     {
+        // Cek user sudah login atau belum
         if (Auth::check()) {
+            // => Jika sudah login diarahkan ke dashboard
             return redirect()->route('dashboard');
         } else {
+            // => Jika belum diarahkan kehalaman login
             return view('Auth.login');
         }
     }
