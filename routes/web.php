@@ -62,6 +62,9 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/catering/info', [CateringInfoController::class, 'index'])->name('catering-info');
     Route::get('/catering/info/add', [CateringInfoController::class, 'create'])->name('add-catering-info');
+    Route::post('/catering/info/store', [CateringInfoController::class, 'store'])->name('store-catering-info');
+    Route::get('/catering/info/edit/{id}', [CateringInfoController::class, 'edit'])->name('edit-catering-info');
+    Route::put('/catering/info/update/{id}', [CateringInfoController::class, 'update'])->name('update-catering-info');
 
     Route::get('/catering/advantage', [OurAdvantagesController::class, 'index'])->name('advantage');
     Route::get('/catering/advantage/add', [OurAdvantagesController::class, 'create'])->name('add-advantage');

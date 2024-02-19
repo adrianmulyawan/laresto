@@ -23,12 +23,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('store-catering-info') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-catering-info', $data->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-4">
                                     <label for="name" class="form-label">Nama Catering</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukan Nama Catering" value="{{ old('name') }}">
+                                        placeholder="Masukan Nama Catering" value="{{ old('name', $data->name) }}">
                                     @error('name')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -38,7 +40,7 @@
                                 <div class="mb-4">
                                     <label for="email" class="form-label">Email Catering</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Masukan Email Catering" value="{{ old('email') }}">
+                                        placeholder="Masukan Email Catering" value="{{ old('email', $data->email) }}">
                                     @error('email')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -48,7 +50,8 @@
                                 <div class="mb-4">
                                     <label for="phone_number" class="form-label">Nomor Telpon</label>
                                     <input type="text" class="form-control" id="phone_number" name="phone_number"
-                                        placeholder="Masukan Kontak Catering" value="{{ old('phone_number') }}">
+                                        placeholder="Masukan Kontak Catering"
+                                        value="{{ old('phone_number', $data->phone_number) }}">
                                     @error('phone_number')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -58,7 +61,7 @@
                                 <div class="mb-4">
                                     <label for="address" class="form-label">Alamat</label>
                                     <input type="text" class="form-control" id="address" name="address"
-                                        placeholder="Masukan Alamat Catering" value="{{ old('address') }}">
+                                        placeholder="Masukan Alamat Catering" value="{{ old('address', $data->address) }}">
                                     @error('address')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -68,7 +71,7 @@
                                 <div class="mb-4">
                                     <label for="history_info" class="form-label">Sejarah Catering</label>
                                     <textarea class="form-control" id="history_info" name="history_info" placeholder="Masukan Sejarah Catering"
-                                        rows="5">{{ old('history_info') }}</textarea>
+                                        rows="5">{{ old('history_info', $data->history_info) }}</textarea>
                                     @error('history_info')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -78,7 +81,7 @@
                                 <div class="mb-4">
                                     <label for="description_info" class="form-label">Deskripsi Catering</label>
                                     <textarea class="form-control" id="description_info" name="description_info" placeholder="Masukan Deskripsi Catering"
-                                        rows="5">{{ old('description_info') }}</textarea>
+                                        rows="5">{{ old('description_info', $data->description_info) }}</textarea>
                                     @error('description_info')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -86,8 +89,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="logo" class="form-label">Logo Catering</label>
+                                    <label for="logo" class="form-label">Logo Catering</label> <br>
+                                    <img src="{{ Storage::url($data->logo) }}" alt="logo-old" class="img-fluid my-2"
+                                        width="250px">
                                     <input class="form-control" type="file" id="logo" name="logo">
+                                    <small class="text-muted">Jangan upload image bila tidak ingin mengganti logo</small>
                                     @error('logo')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -95,7 +101,7 @@
                                     @enderror
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-submit-data py-2" type="submit">SIMPAN DATA</button>
+                                    <button class="btn btn-submit-data py-2" type="submit">UPDATE DATA</button>
                                 </div>
                             </form>
                         </div>
