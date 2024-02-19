@@ -20,6 +20,7 @@
 </head>
 
 <body class="sb-nav-fixed">
+    @include('sweetalert::alert')
     {{-- Navbar --}}
     <x-dashboard-navbar-component></x-dashboard-navbar-component>
 
