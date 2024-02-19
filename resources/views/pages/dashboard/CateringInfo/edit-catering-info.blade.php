@@ -10,7 +10,7 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4">Info Catering</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active text-capitalize">Form Tambah Info Catering</li>
+                <li class="breadcrumb-item active text-capitalize">Edit Informasi Catering</li>
             </ol>
 
             <!-- Row Card I -->
@@ -19,7 +19,7 @@
                     <div class="card card-table">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center py-2">
-                                <h5 class="text-start my-2 mx-2">Form Tambah Info Catering</h5>
+                                <h5 class="text-start my-2 mx-2">Form Edit Info Catering</h5>
                             </div>
                         </div>
                         <div class="card-body">
