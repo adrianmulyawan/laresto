@@ -18,7 +18,6 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
     <header data-aos="fade-down">
         <x-nav-menu-component></x-nav-menu-component>
 
@@ -27,7 +26,6 @@
     </header>
 
     <x-contact-component></x-contact-component>
-
     @yield('content')
 
     <x-main-footer-component></x-main-footer-component>
