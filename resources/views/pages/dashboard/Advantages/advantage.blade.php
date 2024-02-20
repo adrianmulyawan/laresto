@@ -33,80 +33,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/about/choose-1.png') }}" alt="icon"
-                                                width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gratis Ongkir</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->image) }}" alt="icon" width="200px">
+                                            </td>
+                                            <td class="text-center align-middle">{{ $item->name }}</td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-advantage', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-advantage', $item->id) }}" class="btn btn-danger"
+                                                    data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/about/choose-2.png') }}" alt="icon"
-                                                width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">100% Halal</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/about/choose-3.png') }}" alt="icon"
-                                                width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Murah</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">4</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/about/choose-4.png') }}" alt="icon"
-                                                width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Praktis</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                                {{-- <form action="{{ route('delete-advantage', $item->id) }}" method="post"
+                                                    class="d-inline" data-confirm-delete="true">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form> --}}
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center text-danger my-3">Belum Ada Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            <div class="row justify-content-end float-end">
+                                {{ $items->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

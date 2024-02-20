@@ -68,6 +68,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/catering/advantage', [OurAdvantagesController::class, 'index'])->name('advantage');
     Route::get('/catering/advantage/add', [OurAdvantagesController::class, 'create'])->name('add-advantage');
+    Route::post('/catering/advantage/store', [OurAdvantagesController::class, 'store'])->name('store-advantage');
+    Route::get('/catering/advantage/edit/{id}', [OurAdvantagesController::class, 'edit'])->name('edit-advantage');
+    Route::put('/catering/advantage/update/{id}', [OurAdvantagesController::class, 'update'])->name('update-advantage');
+    Route::delete('/catering/advantage/delete/{id}', [OurAdvantagesController::class, 'destroy'])->name('delete-advantage');
 
     Route::get('/catering/history', [OurHistoryController::class, 'index'])->name('history');
     Route::get('/catering/history/add', [OurHistoryController::class, 'create'])->name('add-history');
