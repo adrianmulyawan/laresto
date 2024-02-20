@@ -88,6 +88,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/catering/gallery/delete/{id}', [OurGalleryController::class, 'destroy'])->name('delete-gallery');
 
     Route::get('/catering/banner', [BannerController::class, 'index'])->name('banner');
+    Route::post('/catering/banner/store', [BannerController::class, 'store'])->name('store-banner');
+    Route::get('/catering/banner/edit/{id}', [BannerController::class, 'edit'])->name('edit-banner');
+    Route::put('/catering/banner/update/{id}', [BannerController::class, 'update'])->name('update-banner');
+    Route::delete('/catering/banner/delete/{id}', [BannerController::class, 'destroy'])->name('delete-banner');
 
     Route::get('/service', [ServiceController::class, 'index'])->name('service');
     // Route::get('/service/add', [ServiceController::class, 'create'])->name('add-service');

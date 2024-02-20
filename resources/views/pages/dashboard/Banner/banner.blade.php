@@ -18,8 +18,8 @@
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <h5 class="text-start my-2 mx-2">Daftar Banner</h5>
                                 <!-- <a href="add-our-gallery.html" class="btn btn-add text-end mx-2 px-3">
-                                                                                              <i class="fa-solid fa-plus fa-sm"></i> Tambah Data
-                                                                                            </a> -->
+                                                                                                                                                                      <i class="fa-solid fa-plus fa-sm"></i> Tambah Data
+                                                                                                                                                                    </a> -->
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-add text-end mx-2 px-3" data-bs-toggle="modal"
                                     data-bs-target="#addBanner">
@@ -36,28 +36,41 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="#" method="post">
+                                            <form action="{{ route('store-banner') }}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-body">
                                                     <div class="mb-4">
                                                         <label for="banner_name" class="form-label">Nama Banner</label>
                                                         <input type="text" class="form-control" id="banner_name"
-                                                            name="banner_name" placeholder="Masukan Nama Banner">
+                                                            name="banner_name" placeholder="Masukan Nama Banner"
+                                                            value="{{ old('banner_name') }}">
+                                                        @error('banner_name')
+                                                            <div class="form-text text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                     <div class="mb-4">
                                                         <label for="banner_image" class="form-label">Banner</label>
                                                         <input type="file" class="form-control" id="banner_image"
                                                             name="banner_image">
+                                                        @error('banner_image')
+                                                            <div class="form-text text-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                     <!-- <div class="d-grid gap-2">
-                                                                                                        <button class="btn btn-submit-data py-2 py-2" type="submit">SIMPAN DATA</button>
-                                                                                                      </div> -->
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-submit-data">Simpan Data</button>
-                                            </div>
+                                                                                                                                                                                <button class="btn btn-submit-data py-2 py-2" type="submit">SIMPAN DATA</button>
+                                                                                                                                                                              </div> -->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-submit-data">Simpan Data</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -74,58 +87,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/1.png') }}" alt="icon" width="180px">
-                                        </td>
-                                        <td class="text-center align-middle">Banner Promo 1</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->banner_image) }}" alt="icon"
+                                                    width="180px">
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{ $item->banner_name }}
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-banner', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-banner', $item->id) }}" class="btn btn-danger"
+                                                    data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/2.png') }}" alt="icon" width="180px">
-                                        </td>
-                                        <td class="text-center align-middle">Banner Promo 2</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/3.png') }}" alt="icon"
-                                                width="180px">
-                                        </td>
-                                        <td class="text-center align-middle">Banner Promo 3</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="my-3 text-center text-danger" colspan="4">
+                                                Belum Ada Data Apapun
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
