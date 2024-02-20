@@ -75,6 +75,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/catering/history', [OurHistoryController::class, 'index'])->name('history');
     Route::get('/catering/history/add', [OurHistoryController::class, 'create'])->name('add-history');
+    Route::post('/catering/history/store', [OurHistoryController::class, 'store'])->name('store-history');
+    Route::get('/catering/history/edit/{id}', [OurHistoryController::class, 'edit'])->name('edit-history');
+    Route::put('/catering/history/update/{id}', [OurHistoryController::class, 'update'])->name('update-history');
+    Route::delete('/catering/history/delete/{id}', [OurHistoryController::class, 'destroy'])->name('delete-history');
 
     Route::get('/catering/gallery', [OurGalleryController::class, 'index'])->name('gallery');
     Route::get('/catering/gallery/add', [OurGalleryController::class, 'create'])->name('add-gallery');
