@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Organization::class);
     }
+
+    public function advantages()
+    {
+        return $this->hasMany(Advantage::class);
+    }
 }
