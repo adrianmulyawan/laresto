@@ -20,12 +20,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('store-gallery') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-gallery', $data->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-4">
                                     <label for="name" class="form-label">Nama Gambar</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukan Nama Gambar" value="{{ old('name') }}">
+                                        placeholder="Masukan Nama Gambar" value="{{ old('name', $data->name) }}">
                                     @error('name')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -33,8 +35,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="image" class="form-label">Gambar</label>
+                                    <label for="image" class="form-label">Gambar</label> <br>
+                                    <img src="{{ Storage::url($data->image) }}" alt="image" class="img-fluid my-3"
+                                        width="220px">
                                     <input type="file" class="form-control" id="image" name="image">
+                                    <small class="text-muted">Jangan upload gambar bila tidak ingin mengganti</small>
                                     @error('image')
                                         <div class="form-text text-danger">
                                             {{ $message }}

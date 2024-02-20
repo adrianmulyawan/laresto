@@ -33,98 +33,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/galleries/amelia-protiva--5FaEieuX9g-unsplash.jpg') }}"
-                                                alt="icon" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gambar 1</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->image) }}" alt="icon" width="200px">
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{ $item->name }}
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-gallery', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-gallery', $item->id) }}" class="btn btn-danger"
+                                                    data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/galleries/chasse-sauvage-cKupNvXrU4I-unsplash.jpg') }}"
-                                                alt="icon" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gambar 2</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/galleries/chasse-sauvage-zlUGL4hBHcw-unsplash.jpg') }}"
-                                                alt="icon" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gambar 3</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">4</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/galleries/kelly-jean-TclQHtlkzRc-unsplash.jpg') }}"
-                                                alt="icon" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gambar 3</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">5</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/galleries/tai-s-captures-O3YpwNTKXkU-unsplash.jpg') }}"
-                                                alt="icon" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Gambar 3</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="my-3 text-danger text-center" colspan="4">Belum Ada Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            {{ $items->links() }}
                         </div>
                     </div>
                 </div>

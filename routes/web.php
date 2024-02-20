@@ -82,6 +82,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/catering/gallery', [OurGalleryController::class, 'index'])->name('gallery');
     Route::get('/catering/gallery/add', [OurGalleryController::class, 'create'])->name('add-gallery');
+    Route::post('/catering/gallery/store', [OurGalleryController::class, 'store'])->name('store-gallery');
+    Route::get('/catering/gallery/edit/{id}', [OurGalleryController::class, 'edit'])->name('edit-gallery');
+    Route::put('/catering/gallery/update/{id}', [OurGalleryController::class, 'update'])->name('update-gallery');
+    Route::delete('/catering/gallery/delete/{id}', [OurGalleryController::class, 'destroy'])->name('delete-gallery');
 
     Route::get('/catering/banner', [BannerController::class, 'index'])->name('banner');
 
