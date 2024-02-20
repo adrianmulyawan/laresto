@@ -80,50 +80,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row row-service-list justify-content-center">
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="100">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/cake-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Pesta Ulang Tahun</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="200">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/building-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Acara Perusahaan</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="300">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/meeting-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Rapat Kantor</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="400">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/glass-drinks-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Arisan</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="500">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/wedding-bride-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Pernikahan</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="600">
-                                        <div class="card card-service-list p-4">
-                                          <img src="./frontend/images/wedding-rings-icon-1.svg" alt="card-icon" width="60px">
-                                          <h5 class="text-start text-capitalize">Lamaran</h5>
-                                          <p class="text-stat text-capitalize">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta culpa nam placeat maiores, corrupti reprehenderit?</p>
-                                        </div>
-                                      </div>
-                                    </div> -->
             </div>
         </div>
     </section>
