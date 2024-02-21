@@ -37,7 +37,8 @@ class AuthController extends Controller
             Alert::success('Hore!', 'Login Berhasil!');
             return redirect()->route('dashboard');
         } else {
-            Session::flash('error', 'Email atau Password Salah');
+            // Session::flash('error', 'Email atau Password Salah');
+            Alert::error('Login Gagal', 'Cek Kembali Email dan Password Anda!');
             return redirect()->route('login');
         }
     }
