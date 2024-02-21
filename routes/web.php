@@ -107,6 +107,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/package/delete/{id}', [PackageCateringController::class, 'destroy'])->name('delete-package-catering');
 
     Route::get('/category', [CategoryMenuController::class, 'index'])->name('category-catering');
+    Route::post('/category/store', [CategoryMenuController::class, 'store'])->name('store-category-catering');
+    Route::get('/category/edit/{id}', [CategoryMenuController::class, 'edit'])->name('edit-category-catering');
+    Route::put('/category/update/{id}', [CategoryMenuController::class, 'update'])->name('update-category-catering');
+    Route::delete('/category/delete/{id}', [CategoryMenuController::class, 'destroy'])->name('delete-category-catering');
 
     Route::get('/menu', [ListMenuController::class, 'index'])->name('menu-catering');
     Route::get('/menu/add', [ListMenuController::class, 'create'])->name('add-menu-catering');
