@@ -94,7 +94,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/catering/banner/delete/{id}', [BannerController::class, 'destroy'])->name('delete-banner');
 
     Route::get('/service', [ServiceController::class, 'index'])->name('service');
-    // Route::get('/service/add', [ServiceController::class, 'create'])->name('add-service');
+    Route::post('/service/store', [ServiceController::class, 'store'])->name('store-service');
+    Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('edit-service');
+    Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('update-service');
+    Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('delete-service');
 
     Route::get('/package', [PackageCateringController::class, 'index'])->name('package-catering');
     Route::get('/package/add', [PackageCateringController::class, 'create'])->name('add-package-catering');
