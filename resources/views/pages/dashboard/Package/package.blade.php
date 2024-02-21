@@ -34,103 +34,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/package/ulysse-pointcheval-a-8LxEvb4kU-unsplash.jpg') }}"
-                                                alt="icon" width="120px">
-                                        </td>
-                                        <td class="text-center align-middle">Paket Silver</td>
-                                        <td class="text-center align-middle">25.000 / Pax</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->image_header) }}" alt="icon"
+                                                    width="120px">
+                                            </td>
+                                            <td class="text-center align-middle">{{ $item->name }}</td>
+                                            <td class="text-center align-middle">
+                                                Rp {{ number_format($item->price, 2, ',', '.') }} / Pax
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-package-catering', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-package-catering', $item->id) }}"
+                                                    class="btn btn-danger" data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/package/ulysse-pointcheval-a-8LxEvb4kU-unsplash.jpg') }}"
-                                                alt="icon" width="120px">
-                                        </td>
-                                        <td class="text-center align-middle">Paket Gold</td>
-                                        <td class="text-center align-middle">30.000 / Pax</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/package/ulysse-pointcheval-a-8LxEvb4kU-unsplash.jpg') }}"
-                                                alt="icon" width="120px">
-                                        </td>
-                                        <td class="text-center align-middle">Paket Platinum</td>
-                                        <td class="text-center align-middle">35.000 / Pax</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">4</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/package/ulysse-pointcheval-a-8LxEvb4kU-unsplash.jpg') }}"
-                                                alt="icon" width="120px">
-                                        </td>
-                                        <td class="text-center align-middle">Paket Diamond</td>
-                                        <td class="text-center align-middle">45.000 / Pax</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">5</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/package/ulysse-pointcheval-a-8LxEvb4kU-unsplash.jpg') }}"
-                                                alt="icon" width="120px">
-                                        </td>
-                                        <td class="text-center align-middle">Paket Supreme</td>
-                                        <td class="text-center align-middle">60.000 / Pax</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="my-3 text-center text-danger">Belum Ada Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            {{ $items->links() }}
                         </div>
                     </div>
                 </div>

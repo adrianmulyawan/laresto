@@ -101,6 +101,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/package', [PackageCateringController::class, 'index'])->name('package-catering');
     Route::get('/package/add', [PackageCateringController::class, 'create'])->name('add-package-catering');
+    Route::post('/package/store', [PackageCateringController::class, 'store'])->name('store-package-catering');
+    Route::get('/package/edit/{id}', [PackageCateringController::class, 'edit'])->name('edit-package-catering');
+    Route::put('/package/update/{id}', [PackageCateringController::class, 'update'])->name('update-package-catering');
+    Route::delete('/package/delete/{id}', [PackageCateringController::class, 'destroy'])->name('delete-package-catering');
 
     Route::get('/category', [CategoryMenuController::class, 'index'])->name('category-catering');
 
