@@ -35,108 +35,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/menu-list/nasi-box-1.jpg') }}"
-                                                alt="image-food" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Katering Harian</td>
-                                        <td class="text-center align-middle">Paket NTO + Sate</td>
-                                        <td class="text-center align-middle">
-                                            <a href="../super-admin/dashboardEditKawasan.html"
-                                                class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->image) }}" alt="image-food" width="200px">
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{ $item->category->name }}
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{ $item->name }}
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-menu-catering', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-menu-catering', $item->id) }}"
+                                                    class="btn btn-danger" data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                                                alt="image-food" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Snack Box</td>
-                                        <td class="text-center align-middle">Snack Box 1</td>
-                                        <td class="text-center align-middle">
-                                            <a href="../super-admin/dashboardEditKawasan.html"
-                                                class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/menu-list/nasi-box-2.jpg') }}"
-                                                alt="image-food" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Prasmanan</td>
-                                        <td class="text-center align-middle">Nasi Goreng Oriental</td>
-                                        <td class="text-center align-middle">
-                                            <a href="../super-admin/dashboardEditKawasan.html"
-                                                class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">4</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/menu-list/nasi-box-3.jpg') }}"
-                                                alt="image-food" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Prasmanan</td>
-                                        <td class="text-center align-middle">Paket Nasi Briyani</td>
-                                        <td class="text-center align-middle">
-                                            <a href="../super-admin/dashboardEditKawasan.html"
-                                                class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">5</td>
-                                        <td class="text-center align-middle">
-                                            <img src="{{ asset('frontend/images/menu-list/nasi-box-4.jpg') }}"
-                                                alt="image-food" width="200px">
-                                        </td>
-                                        <td class="text-center align-middle">Nasi Box</td>
-                                        <td class="text-center align-middle">Paket Nasi Box 5</td>
-                                        <td class="text-center align-middle">
-                                            <a href="../super-admin/dashboardEditKawasan.html"
-                                                class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="my-3 text-danger text-center">
+                                                Belum Terdapat Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            {{ $items->links() }}
                         </div>
                     </div>
                 </div>

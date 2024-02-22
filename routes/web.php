@@ -114,6 +114,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/menu', [ListMenuController::class, 'index'])->name('menu-catering');
     Route::get('/menu/add', [ListMenuController::class, 'create'])->name('add-menu-catering');
+    Route::post('/menu/store', [ListMenuController::class, 'store'])->name('store-menu-catering');
+    Route::get('/menu/edit/{id}', [ListMenuController::class, 'edit'])->name('edit-menu-catering');
+    Route::put('/menu/update/{id}', [ListMenuController::class, 'update'])->name('update-menu-catering');
+    Route::delete('/menu/delete/{id}', [ListMenuController::class, 'destroy'])->name('delete-menu-catering');
 
     Route::get('/client', [ClientController::class, 'index'])->name('client');
 
