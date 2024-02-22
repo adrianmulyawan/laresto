@@ -120,6 +120,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/menu/delete/{id}', [ListMenuController::class, 'destroy'])->name('delete-menu-catering');
 
     Route::get('/client', [ClientController::class, 'index'])->name('client');
+    Route::post('/client/store', [ClientController::class, 'store'])->name('store-client');
+    Route::get('/client/edit/{id}', [ClientController::class, 'edit'])->name('edit-client');
+    Route::put('/client/update/{id}', [ClientController::class, 'update'])->name('update-client');
+    Route::delete('/client/delete/{id}', [ClientController::class, 'destroy'])->name('delete-client');
 
     Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
 
