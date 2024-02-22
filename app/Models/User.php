@@ -88,4 +88,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Menu::class);
     }
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
 }
