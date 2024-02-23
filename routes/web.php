@@ -126,6 +126,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/client/delete/{id}', [ClientController::class, 'destroy'])->name('delete-client');
 
     Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
+    Route::post('/testimonial/store', [TestimonialController::class, 'store'])->name('store-testimonial');
+    Route::get('/testimonial/edit/{id}', [TestimonialController::class, 'edit'])->name('edit-testimonial');
+    Route::put('/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('update-testimonial');
+    Route::delete('/testimonial/delete/{id}', [TestimonialController::class, 'destroy'])->name('delete-testimonial');
 
     Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog-dashboard');
     Route::get('/blog/add', [AdminBlogController::class, 'create'])->name('add-blog-dashboard');
