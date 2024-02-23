@@ -98,4 +98,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Testimonial::class);
     }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }
