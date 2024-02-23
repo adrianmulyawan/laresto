@@ -24,12 +24,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('store-blog-dashboard') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-blog-dashboard', $data->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-4">
                                     <label for="title" class="form-label">Judul Blog</label>
                                     <input type="text" class="form-control" id="title" name="title"
-                                        placeholder="Masukan Judul Blog" value="{{ old('title') }}">
+                                        placeholder="Masukan Judul Blog" value="{{ old('title', $data->title) }}">
                                     @error('title')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -37,8 +39,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="image_header" class="form-label">Gambar Header Blog</label>
+                                    <label for="image_header" class="form-label">Gambar Header Blog</label> <br>
+                                    <img src="{{ Storage::url($data->image_header) }}" alt="image" class="img-fluid my-3"
+                                        width="220px">
                                     <input class="form-control" type="file" id="image_header" name="image_header">
+                                    <small class="text-muted">Jangan upload gambar bila tidak ingin mengganti</small>
                                     @error('image_header')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -46,8 +51,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="image_blog" class="form-label">Gambar Blog</label>
+                                    <label for="image_blog" class="form-label">Gambar Blog</label> <br>
+                                    <img src="{{ Storage::url($data->image_blog) }}" alt="image" class="img-fluid my-3"
+                                        width="220px">
                                     <input type="file" class="form-control" id="image_blog" name="image_blog">
+                                    <small class="text-muted">Jangan upload gambar bila tidak ingin mengganti</small>
                                     @error('image_blog')
                                         <div class="form-text text-danger">
                                             {{ $message }}
@@ -56,7 +64,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="body" class="form-label">Isi Blog</label>
-                                    <textarea class="form-control" id="body" name="body" placeholder="Masukan Isi Blog" rows="5"></textarea>
+                                    <textarea class="form-control" id="body" name="body" placeholder="Masukan Isi Blog" rows="5">{{ old('body', $data->body) }}</textarea>
                                     @error('body')
                                         <div class="form-text text-danger">
                                             {{ $message }}

@@ -133,6 +133,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog-dashboard');
     Route::get('/blog/add', [AdminBlogController::class, 'create'])->name('add-blog-dashboard');
+    Route::post('/blog/store', [AdminBlogController::class, 'store'])->name('store-blog-dashboard');
+    Route::get('/blog/edit/{id}', [AdminBlogController::class, 'edit'])->name('edit-blog-dashboard');
+    Route::put('/blog/update/{id}', [AdminBlogController::class, 'update'])->name('update-blog-dashboard');
+    Route::delete('/blog/delete/{id}', [AdminBlogController::class, 'destroy'])->name('delete-blog-dashboard');
 
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 

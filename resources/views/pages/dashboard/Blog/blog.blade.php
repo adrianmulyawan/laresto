@@ -27,74 +27,47 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center table-heading">No</th>
+                                        <th scope="col" class="text-center table-heading">Gambar</th>
                                         <th scope="col" class="text-center table-heading">Judul Blog</th>
                                         <th scope="col" class="text-center table-heading">Pengunggah</th>
                                         <th scope="col" class="text-center table-heading">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">Ini Judul Berita 1</td>
-                                        <td class="text-center align-middle">Muhammad Sumbul</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">
+                                                <img src="{{ Storage::url($item->image_blog) }}" alt="image_blog"
+                                                    class="img-fluid" width="200px">
+                                            </td>
+                                            <td class="text-center align-middle">{{ Str::limit($item->title, 20, '...') }}
+                                            </td>
+                                            <td class="text-center align-middle">{{ $item->user->name }}</td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('edit-blog-dashboard', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
+                                                </a>
+                                                <a href="{{ route('delete-blog-dashboard', $item->id) }}"
+                                                    class="btn btn-danger" data-confirm-delete="true">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">2</td>
-                                        <td class="text-center align-middle">Ini Judul Berita 2</td>
-                                        <td class="text-center align-middle">Muhammad Sumbul</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">3</td>
-                                        <td class="text-center align-middle">Ini Judul Berita 3</td>
-                                        <td class="text-center align-middle">Muhammad Sumbul</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center align-middle">4</td>
-                                        <td class="text-center align-middle">Ini Judul Berita 4</td>
-                                        <td class="text-center align-middle">Muhammad Sumbul</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-pencil" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="my-3 text-center text-danger">
+                                                Belum Ada Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            {{ $items->links() }}
                         </div>
                     </div>
                 </div>
