@@ -31,22 +31,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">Adrian Mulyawan</td>
-                                        <td class="text-center align-middle">hello.adrianmulyawan@gmail.com</td>
-                                        <td class="text-center align-middle">081257099067</td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="btn btn-info mt-auto mr-2">
-                                                <i class="fa-solid fa-eye" style="color: #ffffff;"></i>
-                                            </a>
-                                            <form action="#" method="post" class="d-inline">
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $number += 1 }}</td>
+                                            <td class="text-center align-middle">{{ $item->name }}</td>
+                                            <td class="text-center align-middle">{{ $item->email }}</td>
+                                            <td class="text-center align-middle">{{ $item->contact }}</td>
+                                            <td class="text-center align-middle">
+                                                <a href="{{ route('show-question', $item->id) }}"
+                                                    class="btn btn-info mt-auto mr-2">
+                                                    <i class="fa-solid fa-eye" style="color: #ffffff;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="my-3 text-center text-danger">
+                                                Belum Ada Data Apapun!
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

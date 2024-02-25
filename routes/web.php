@@ -145,6 +145,7 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/faq/delete/{id}', [FaqController::class, 'destroy'])->name('delete-faq');
 
     Route::get('/question', [UserQuestionController::class, 'index'])->name('question');
+    Route::get('/question/detail/{id}', [UserQuestionController::class, 'show'])->name('show-question');
 
     Route::get('/profile', [SettingAccountController::class, 'profile'])->name('profile');
     Route::get('/change-password', [SettingAccountController::class, 'changePassword'])->name('change-password');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserQuestionController extends Controller
 {
@@ -12,7 +14,8 @@ class UserQuestionController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard.Question.question');
+        $items = Question::orderBy('created_at', 'DESC')->paginate(10);
+        return view('pages.dashboard.Question.question', compact('items'));
     }
 
     /**
@@ -34,9 +37,22 @@ class UserQuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        try {
+            $data = Question::find($id);
+
+            if (!$data) {
+                Alert::error('Error', 'Data tidak ditemukan!');
+                return back();
+            }
+
+            return view('pages.dashboard.Question.show-question', compact('data'));
+        } catch (\Throwable $th) {
+            //throw $th;
+            Alert::error('Error', 'Terjadi kesalahan saat menampilkan data!');
+            return back();
+        }
     }
 
     /**
