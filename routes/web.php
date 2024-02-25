@@ -139,6 +139,10 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::delete('/blog/delete/{id}', [AdminBlogController::class, 'destroy'])->name('delete-blog-dashboard');
 
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+    Route::post('/faq/store', [FaqController::class, 'store'])->name('store-faq');
+    Route::get('/faq/edit/{id}', [FaqController::class, 'edit'])->name('edit-faq');
+    Route::put('/faq/update/{id}', [FaqController::class, 'update'])->name('update-faq');
+    Route::delete('/faq/delete/{id}', [FaqController::class, 'destroy'])->name('delete-faq');
 
     Route::get('/question', [UserQuestionController::class, 'index'])->name('question');
 
