@@ -103,4 +103,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
 }
