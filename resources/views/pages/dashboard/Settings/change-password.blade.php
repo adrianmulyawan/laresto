@@ -19,15 +19,27 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="#" method="post">
+                            <form action="{{ route('update-password') }}" method="post">
+                                @csrf
+                                @method('PUT')
                                 <div class="mb-4">
                                     <label for="current_password" class="form-label">Password Lama</label>
                                     <input type="password" class="form-control" id="current_password"
                                         name="current_password">
+                                    @error('current_password')
+                                        <div class="form-text text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="password" class="form-label">Password Baru</label>
                                     <input type="password" class="form-control" id="password" name="password">
+                                    @error('password')
+                                        <div class="form-text text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
@@ -35,7 +47,7 @@
                                         name="password_confirmation">
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary py-2" type="button">UPDATE PASSWORD</button>
+                                    <button class="btn btn-primary py-2" type="submit">UPDATE PASSWORD</button>
                                 </div>
                             </form>
                         </div>

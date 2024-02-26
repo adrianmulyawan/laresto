@@ -151,4 +151,5 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::put('/profile/update', [SettingAccountController::class, 'updateProfile'])->name('update-profile');
 
     Route::get('/change-password', [SettingAccountController::class, 'changePassword'])->name('change-password');
+    Route::put('/change-password/update', [SettingAccountController::class, 'updatePassword'])->name('update-password');
 });
