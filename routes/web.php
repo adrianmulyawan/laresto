@@ -148,5 +148,7 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::get('/question/detail/{id}', [UserQuestionController::class, 'show'])->name('show-question');
 
     Route::get('/profile', [SettingAccountController::class, 'profile'])->name('profile');
+    Route::put('/profile/update', [SettingAccountController::class, 'updateProfile'])->name('update-profile');
+
     Route::get('/change-password', [SettingAccountController::class, 'changePassword'])->name('change-password');
 });
