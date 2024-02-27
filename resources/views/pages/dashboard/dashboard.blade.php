@@ -20,7 +20,7 @@
                                         <i class="fa-solid fa-users fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>10</h3>
+                                        <h3>{{ $user }}</h3>
                                         <span>Users</span>
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                                         <i class="fa-solid fa-user-tie fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>2</h3>
+                                        <h3>{{ $super_admin }}</h3>
                                         <span>Super Admin</span>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                         <i class="fa-solid fa-user fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>10</h3>
+                                        <h3>{{ $admin }}</h3>
                                         <span>Admin</span>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                         <i class="fa-solid fa-box-archive fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>16</h3>
+                                        <h3>{{ $package }}</h3>
                                         <span>Paket Catering</span>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                         <i class="fa-solid fa-utensils fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>8</h3>
+                                        <h3>{{ $category }}</h3>
                                         <span>Jenis Hidangan</span>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                         <i class="fa-solid fa-bowl-food fa-2xl"></i>
                                     </div>
                                     <div class="media-body text-end">
-                                        <h3>150</h3>
+                                        <h3>{{ $menu }}</h3>
                                         <span>Menu Makanan</span>
                                     </div>
                                 </div>
@@ -126,122 +126,75 @@
                         Paket Katering Terbaru
                     </h5>
                     <!-- Item I -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-box-archive"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Paket Prasmanan Silver
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Lorem ipsum dolor sit amet consectetur.
-                                </div>
-                                <div class="col-md-1">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item II-->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-box-archive"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Paket Intimate Wedding...
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Lorem ipsum dolor sit amet consectetur.
-                                </div>
-                                <div class="col-md-1">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @forelse ($packages as $package)
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-1">
+                                        {{-- <i class="fa-solid fa-box-archive"></i> --}}
+                                        <img src="{{ Storage::url($package->image_header) }}" alt="img-menu"
+                                            class="img-fluid" width="100px">
+                                    </div>
+                                    <div class="col-md-4 text-capitalize">
+                                        {{ $package->name }}
+                                    </div>
+                                    <div class="col-md-6 text-capitalize">
+                                        Lorem ipsum dolor sit amet consectetur.
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="{{ route('package-catering') }}" class="text-decoration-none">
+                                            <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item III -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-box-archive"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Paket Lamaran Gold
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Lorem ipsum dolor sit amet consectetur.
-                                </div>
-                                <div class="col-md-1">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @empty
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 align-middle">
+                                        Belum Ada Data Apapun!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <h5 class="mb-3 recent-header">
                         User Terbaru
                     </h5>
-                    <!-- Item I -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-user fa-lg"></i>
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Adrian Mulyawan
-                                </div>
-                                <div class="col-md-5 text-capitalize">
-                                    Super Admin
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item II -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-user fa-lg"></i>
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Idzar Raffi
-                                </div>
-                                <div class="col-md-5 text-capitalize">
-                                    Admin
+                    @forelse ($users as $user)
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-1">
+                                        <i class="fa-solid fa-user fa-lg"></i>
+                                    </div>
+                                    <div class="col-md-6 text-capitalize">
+                                        {{ $user->name }}
+                                    </div>
+                                    <div class="col-md-5 text-capitalize">
+                                        {{ $user->role }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item III -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-solid fa-user fa-lg"></i>
-                                </div>
-                                <div class="col-md-6 text-capitalize">
-                                    Jodi Akbar
-                                </div>
-                                <div class="col-md-5 text-capitalize">
-                                    Admin
+                    @empty
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 align-middle">
+                                        Belum Ada Data Apapun!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
 
@@ -251,137 +204,83 @@
                     <h5 class="mb-3 recent-header">
                         Jenis Hidangan Terbaru
                     </h5>
-                    <!-- Item I -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-utensils"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Snack Box
-                                </div>
-                                <div class="col-md-4">
-                                    David Guetta
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item II -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-utensils"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Katering Harian
-                                </div>
-                                <div class="col-md-4">
-                                    David Guetta
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+
+                    @forelse ($categories as $category)
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        {{-- <i class="fa-solid fa-utensils"></i> --}}
+                                        <img src="{{ Storage::url($category->icon) }}" alt="img-menu" class="img-fluid"
+                                            width="20px">
+                                    </div>
+                                    <div class="col-md-4 text-capitalize">
+                                        {{ $category->name }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $category->user->name }}
+                                    </div>
+                                    <div class="col-md-2 d-none d-md-block">
+                                        <a href="{{ route('category-catering') }}" class="text-decoration-none">
+                                            <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item III -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-utensils"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Katering Perusahaan
-                                </div>
-                                <div class="col-md-4">
-                                    David Guetta
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @empty
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 align-middle">
+                                        Belum Ada Data Apapun!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
                 <div class="col-6">
                     <h5 class="mb-3 recent-header">
                         Menu Makanan Terbaru
                     </h5>
-                    <!-- Item I -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-pepper-hot"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Nasi Box Ayam
-                                </div>
-                                <div class="col-md-4">
-                                    Katering Harian
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item II -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-pepper-hot"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Nasi Box Ayam
-                                </div>
-                                <div class="col-md-4">
-                                    Katering Harian
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @forelse ($menus as $menu)
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        {{-- <i class="fa-solid fa-pepper-hot"></i> --}}
+                                        <img src="{{ Storage::url($menu->image) }}" alt="img-menu" class="img-fluid"
+                                            width="100px">
+                                    </div>
+                                    <div class="col-md-4 text-capitalize">
+                                        {{ $menu->name }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $menu->category->name }}
+                                    </div>
+                                    <div class="col-md-2 d-none d-md-block">
+                                        <a href="{{ route('menu-catering') }}" class="text-decoration-none">
+                                            <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item III -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-2">
-                                    <i class="fa-solid fa-pepper-hot"></i>
-                                </div>
-                                <div class="col-md-4 text-capitalize">
-                                    Nasi Box Ayam
-                                </div>
-                                <div class="col-md-4">
-                                    Katering Harian
-                                </div>
-                                <div class="col-md-2 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @empty
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 align-middle">
+                                        Belum Ada Data Apapun!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
 
@@ -391,141 +290,47 @@
                     <h5 class="mb-3 recent-header">
                         Pertanyaan Customers Terbaru
                     </h5>
-                    <!-- Item I -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                </div>
-                                <div class="col-md-2">
-                                    08 Januari 2024
-                                </div>
-                                <div class="col-md-2 text-capitalize">
-                                    Budi Gunawan
-                                </div>
-                                <div class="col-md-4">
-                                    budi.gunawan@gmail.com
-                                </div>
-                                <div class="col-md-2">
-                                    082154590559
-                                </div>
-                                <div class="col-md-1 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item II -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                </div>
-                                <div class="col-md-2">
-                                    08 Januari 2024
-                                </div>
-                                <div class="col-md-2 text-capitalize">
-                                    Budi Gunawan
-                                </div>
-                                <div class="col-md-4">
-                                    budi.gunawan@gmail.com
-                                </div>
-                                <div class="col-md-2">
-                                    082154590559
-                                </div>
-                                <div class="col-md-1 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @forelse ($questions as $question)
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-1">
+                                        <i class="fa-regular fa-circle-question"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ $question->created_at ? $question->created_at->format('d M Y') : 'Waktu Tidak Diketahui' }}
+                                    </div>
+                                    <div class="col-md-2 text-capitalize">
+                                        {{ $question->name }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $question->email }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{ $question->contact }}
+                                    </div>
+                                    <div class="col-md-1 d-none d-md-block">
+                                        <a href="{{ route('show-question', $question->id) }}"
+                                            class="text-decoration-none">
+                                            <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item III -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                </div>
-                                <div class="col-md-2">
-                                    08 Januari 2024
-                                </div>
-                                <div class="col-md-2 text-capitalize">
-                                    Budi Gunawan
-                                </div>
-                                <div class="col-md-4">
-                                    budi.gunawan@gmail.com
-                                </div>
-                                <div class="col-md-2">
-                                    082154590559
-                                </div>
-                                <div class="col-md-1 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
+                    @empty
+                        <!-- Item I -->
+                        <div class="card card-list d-block text-decoration-none mb-3">
+                            <div class="card-body card-recent-content">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 align-middle">
+                                        Belum Ada Data Apapun!
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Item IV -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                </div>
-                                <div class="col-md-2">
-                                    08 Januari 2024
-                                </div>
-                                <div class="col-md-2 text-capitalize">
-                                    Budi Gunawan
-                                </div>
-                                <div class="col-md-4">
-                                    budi.gunawan@gmail.com
-                                </div>
-                                <div class="col-md-2">
-                                    082154590559
-                                </div>
-                                <div class="col-md-1 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item V -->
-                    <div class="card card-list d-block text-decoration-none mb-3">
-                        <div class="card-body card-recent-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-1">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                </div>
-                                <div class="col-md-2">
-                                    08 Januari 2024
-                                </div>
-                                <div class="col-md-2 text-capitalize">
-                                    Budi Gunawan
-                                </div>
-                                <div class="col-md-4">
-                                    budi.gunawan@gmail.com
-                                </div>
-                                <div class="col-md-2">
-                                    082154590559
-                                </div>
-                                <div class="col-md-1 d-none d-md-block">
-                                    <a href="/" class="text-decoration-none">
-                                        <i class="fa-solid fa-arrow-right fa-sm" style="color: #000;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

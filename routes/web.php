@@ -60,18 +60,40 @@ Route::get('/blog/detail/{slug}', DetailBlogController::class)->name('detail-blo
 Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
-    Route::get('/catering/info', [CateringInfoController::class, 'index'])->name('catering-info');
-    Route::get('/catering/info/add', [CateringInfoController::class, 'create'])->name('add-catering-info');
-    Route::post('/catering/info/store', [CateringInfoController::class, 'store'])->name('store-catering-info');
-    Route::get('/catering/info/edit/{id}', [CateringInfoController::class, 'edit'])->name('edit-catering-info');
-    Route::put('/catering/info/update/{id}', [CateringInfoController::class, 'update'])->name('update-catering-info');
+    Route::get('/catering/info', [CateringInfoController::class, 'index'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('catering-info');
+    Route::get('/catering/info/add', [CateringInfoController::class, 'create'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('add-catering-info');
+    Route::post('/catering/info/store', [CateringInfoController::class, 'store'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('store-catering-info');
+    Route::get('/catering/info/edit/{id}', [CateringInfoController::class, 'edit'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('edit-catering-info');
+    Route::put('/catering/info/update/{id}', [CateringInfoController::class, 'update'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('update-catering-info');
 
-    Route::get('/catering/advantage', [OurAdvantagesController::class, 'index'])->name('advantage');
-    Route::get('/catering/advantage/add', [OurAdvantagesController::class, 'create'])->name('add-advantage');
-    Route::post('/catering/advantage/store', [OurAdvantagesController::class, 'store'])->name('store-advantage');
-    Route::get('/catering/advantage/edit/{id}', [OurAdvantagesController::class, 'edit'])->name('edit-advantage');
-    Route::put('/catering/advantage/update/{id}', [OurAdvantagesController::class, 'update'])->name('update-advantage');
-    Route::delete('/catering/advantage/delete/{id}', [OurAdvantagesController::class, 'destroy'])->name('delete-advantage');
+    Route::get('/catering/advantage', [OurAdvantagesController::class, 'index'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('advantage');
+    Route::get('/catering/advantage/add', [OurAdvantagesController::class, 'create'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('add-advantage');
+    Route::post('/catering/advantage/store', [OurAdvantagesController::class, 'store'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('store-advantage');
+    Route::get('/catering/advantage/edit/{id}', [OurAdvantagesController::class, 'edit'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('edit-advantage');
+    Route::put('/catering/advantage/update/{id}', [OurAdvantagesController::class, 'update'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('update-advantage');
+    Route::delete('/catering/advantage/delete/{id}', [OurAdvantagesController::class, 'destroy'])
+        ->middleware(['checkRole:SUPER_ADMIN'])
+        ->name('delete-advantage');
 
     Route::get('/catering/history', [OurHistoryController::class, 'index'])->name('history');
     Route::get('/catering/history/add', [OurHistoryController::class, 'create'])->name('add-history');
