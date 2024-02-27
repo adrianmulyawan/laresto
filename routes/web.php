@@ -25,6 +25,8 @@ use App\Http\Controllers\DetailPackageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +56,7 @@ Route::get('/package', PackageController::class)->name('package');
 Route::get('/package/detail/{slug}', DetailPackageController::class)->name('detail-package');
 Route::get('/blog', BlogController::class)->name('blog');
 Route::get('/blog/detail/{slug}', DetailBlogController::class)->name('detail-blog');
+Route::post('/question/store', [QuestionController::class, 'store'])->name('store-question');
 
 // ==========================================================================================
 
