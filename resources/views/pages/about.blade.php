@@ -26,21 +26,9 @@
                         Ketika Rasa Bertemu <br> Dengan Pelayanan Terbaik
                     </h3>
                     <p class="about-description my-3" style="line-height: 1.8em;">
-                        Selamat datang di Baginda Catering, tempat di mana kelezatan dan keunggulan pelayanan menyatu dalam
-                        setiap hidangan. Sebagai penyedia layanan katering pilihan, kami berkomitmen untuk menghadirkan
-                        pengalaman kuliner istimewa dengan sentuhan khusus.
-                        <br>
-                        Hidangan kami, hasil dari keahlian koki berbakat, tidak hanya memikat lidah tetapi juga menggugah
-                        selera visual. Dengan fokus pada setiap detail, tim kami berdedikasi untuk memberikan pelayanan
-                        terbaik dan membuat setiap acara Anda berkesan.
-                        <br>
-                        Baginda Catering bukan hanya sekadar penyedia makanan, melainkan mitra dalam merencanakan momen
-                        berharga Anda. Kami menyediakan menu yang disesuaikan dengan keinginan Anda, menjadikan setiap acara
-                        unik dan tak terlupakan.
-                        <br>
-                        Keberlanjutan adalah filosofi kami. Kami mengutamakan bahan-bahan lokal dan berkelanjutan,
-                        menggabungkan kelezatan dengan tanggung jawab lingkungan. Dengan memilih Baginda Catering, Anda
-                        tidak hanya menikmati hidangan berkualitas, tetapi juga berkontribusi pada keberlanjutan dunia.
+                        {!! $organization->history_info
+                            ? $organization->history_info
+                            : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' !!}
                     </p>
                 </div>
             </div>
@@ -61,22 +49,22 @@
                     </div>
                     <div class="col-sm-12 col-md-8 col-lg-8">
                         <div class="row row-choose justify-content-center align-items-center">
-                            <div class="col-sm-6 col-md-3 col-lg-3" data-aos="fade-up" data-aos-duration="100">
-                                <img src="{{ asset('frontend/images/about/choose-1.png') }}" alt="card-icon"
-                                    class="img-fluid">
-                            </div>
-                            <div class="col-sm-6 col-md-3 col-lg-3" data-aos="fade-up" data-aos-duration="200">
-                                <img src="{{ asset('frontend/images/about/choose-2.png') }}" alt="card-icon"
-                                    class="img-fluid">
-                            </div>
-                            <div class="col-sm-6 col-md-3 col-lg-3" data-aos="fade-up" data-aos-duration="300">
-                                <img src="{{ asset('frontend/images/about/choose-3.png') }}" alt="card-icon"
-                                    class="img-fluid">
-                            </div>
-                            <div class="col-sm-6 col-md-3 col-lg-3" data-aos="fade-up" data-aos-duration="400">
-                                <img src="{{ asset('frontend/images/about/choose-4.png') }}" alt="card-icon"
-                                    class="img-fluid">
-                            </div>
+                            @if ($advantages->count() > 1)
+                                @php
+                                    $duration = 0;
+                                @endphp
+                                @foreach ($advantages as $advantage)
+                                    <div class="col-sm-6 col-md-3 col-lg-3" data-aos="fade-up"
+                                        data-aos-duration="{{ $duration += 100 }}">
+                                        <img src="{{ Storage::url($advantage->image) }}" alt="{{ $advantage->name }}"
+                                            class="img-fluid">
+                                    </div>
+                                @endforeach
+                            @else
+                                <h5 class="text-center text-danger" data-aos="fade-up">
+                                    Anda Belum Menambahkan Kelebihan Apapun!
+                                </h5>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -102,87 +90,30 @@
                 </div>
                 <div class="col-sm-12 col-md-7 col-lg-7" data-aos="fade-left">
                     <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    2009 - 2011: Awal Perjalanan
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Sejarah dimulai pada tahun 2009 ketika Baginda Catering berdiri. Dengan dedikasi dan
-                                        semangat, kami memperkenalkan layanan katering istimewa yang menggugah selera dan
-                                        memberikan pengalaman kuliner tak terlupakan kepada pelanggan kami.</p>
+                        @if ($histories->count() > 1)
+                            @foreach ($histories as $history)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="historyHeading{{ $history->id }}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#historyCollapse{{ $history->id }}" aria-expanded="false"
+                                            aria-controls="historyCollapse{{ $history->id }}">
+                                            {{ $history->title }}
+                                        </button>
+                                    </h2>
+                                    <div id="historyCollapse{{ $history->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="historyHeading{{ $history->id }}"
+                                        data-bs-parent="#historyAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ $history->description }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    2011 - 2013: Inovasi dan Pertumbuhan
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Pada periode ini, Baginda Catering terus berinovasi dalam menyajikan hidangan
-                                        berkualitas tinggi dan meraih pertumbuhan yang signifikan. Kami memperluas jangkauan
-                                        menu dan meningkatkan pelayanan untuk memenuhi kebutuhan pelanggan dengan lebih
-                                        baik.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    2013 - Sekarang: Keterampilan dan Kepuasan Pelanggan
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Dengan fokus pada keterampilan koki dan kepuasan pelanggan, Baginda Catering terus
-                                        menetapkan standar tinggi dalam dunia katering. Kami berkomitmen untuk terus
-                                        menyajikan hidangan lezat dan menciptakan momen istimewa dalam setiap acara
-                                        pelanggan kami.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    201X - 201Y: Tema Sejarah
-                                </button>
-                            </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Deskripsi sejarah untuk rentang waktu tertentu, menyoroti tema khusus atau pencapaian
-                                        penting dalam perjalanan Baginda Catering.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    201Y - Sekarang: Masa Kini dan Masa Depan
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p>Melihat ke masa kini dan masa depan, Baginda Catering terus berinovasi, memenuhi
-                                        harapan pelanggan, dan menjadi mitra utama dalam setiap perayaan dan acara khusus.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @else
+                            <h5 class="text-center text-danger" data-aos="fade-up">
+                                Anda Belum Menambahkan Sejarah Apapun!
+                            </h5>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -202,32 +133,18 @@
         </div>
         <div class="container-overflow">
             <div class="row row-image-galleries my-5 justify-content-center align-items-stretch">
-                <div class="col-lg-4 col-md-12 col-sm-12 p-0">
-                    <img src="{{ asset('frontend/images/galleries/chasse-sauvage-zlUGL4hBHcw-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Boat on Calm Water" data-aos="fade-right"
-                        data-aos-duration="100" />
-                    <img src="{{ asset('frontend/images/galleries/amelia-protiva--5FaEieuX9g-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Wintry Mountain Landscape" data-aos="fade-right"
-                        data-aos-duration="400" />
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 p-0">
-                    <img src="{{ asset('frontend/images/galleries/chasse-sauvage-cKupNvXrU4I-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Mountains in the Clouds" data-aos="fade-down"
-                        data-aos-duration="200" />
-                    <img src="{{ asset('frontend/images/galleries/zeno-aras-lOW7w5-DMHk-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Boat on Calm Water" data-aos="fade-up"
-                        data-aos-duration="500" />
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 p-0">
-                    <img src="{{ asset('frontend/images/galleries/kelly-jean-TclQHtlkzRc-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Waves at Sea" data-aos="fade-left"
-                        data-aos-duration="300" />
-
-                    <img src="{{ asset('frontend/images/galleries/tai-s-captures-O3YpwNTKXkU-unsplash.jpg') }}"
-                        class="w-100 shadow-1-strong img-fluid" alt="Yosemite National Park" data-aos="fade-left"
-                        data-aos-duration="600" />
-                </div>
+                @php
+                    $duration = 0;
+                @endphp
+                @foreach ($galleries as $gallery)
+                    <div class="col-lg-4 col-md-12 col-sm-12 p-0">
+                        <img src="{{ Storage::url($gallery->image) }}" class="w-100 shadow-1-strong img-fluid"
+                            alt="image-gallery-{{ $gallery->id }}" data-aos="fade-up"
+                            data-aos-duration="{{ $duration += 100 }}" />
+                    </div>
+                @endforeach
             </div>
+
         </div>
     </section>
 @endsection
