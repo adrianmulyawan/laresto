@@ -13,183 +13,83 @@
 @section('content')
     <section class="section-menu-list">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="100">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
+            <div class="row justify-content-start align-items-center">
+                @forelse ($foods as $menu)
+                    <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="100">
+                        <div class="card card-menu-list">
+                            <img src="{{ Storage::url($menu->image) }}" class="card-img-top" alt="detail-menu-image"
+                                width="350px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $menu->name }}</h5>
+                                <div class="dropdown py-2">
+                                    <button class="btn btn-success dropdown-toggle" type="button"
+                                        id="dropdownMenuButton-{{ $menu->id }}" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Lihat Detail Paket
+                                    </button>
+                                    <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton-{{ $menu->id }}">
+                                        <p class="text-price my-2">Harga : Rp
+                                            {{ number_format($menu->price, 2, ',', '.') }} / Kotak </p>
+                                        <p class="text-price my-2">Minimal Order : {{ $menu->minimal_order }} Kotak </p>
+                                        <li class="my-2">
+                                            {!! $menu->description !!}
+                                        </li>
+                                        <li>
+                                            <div class="d-grid gap-2"><a href="https://wa.link/1n5yof" target="_blank"
+                                                    class="btn btn-order"><i class="fa-brands fa-whatsapp fa-sm"
+                                                        style="color: #ffffff;"></i> Pesan Sekarang</a></div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="200">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
+                @empty
+                    <h5 class="text-center text-danger" data-aos="fade-up">
+                        Anda Belum Menambahkan Menu Apapun!
+                    </h5>
+                @endforelse
+                {{-- @foreach ($items as $item)
+                    @forelse ($item->menus as $menu)
+                        <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="100">
+                            <div class="card card-menu-list">
+                                <img src="{{ Storage::url($menu->image) }}" class="card-img-top" alt="detail-menu-image"
+                                    width="350px">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $menu->name }}</h5>
+                                    <div class="dropdown py-2">
+                                        <button class="btn btn-success dropdown-toggle" type="button"
+                                            id="dropdownMenuButton-{{ $menu->id }}" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            Lihat Detail Paket
+                                        </button>
+                                        <ul class="dropdown-menu p-3"
+                                            aria-labelledby="dropdownMenuButton-{{ $menu->id }}">
+                                            <p class="text-price my-2">Harga : Rp
+                                                {{ number_format($menu->price, 2, ',', '.') }} / Kotak </p>
+                                            <p class="text-price my-2">Minimal Order : {{ $menu->minimal_order }} Kotak </p>
+                                            <li class="my-2">
+                                                {!! $menu->description !!}
+                                            </li>
+                                            <li>
+                                                <div class="d-grid gap-2"><a href="https://wa.link/1n5yof" target="_blank"
+                                                        class="btn btn-order"><i class="fa-brands fa-whatsapp fa-sm"
+                                                            style="color: #ffffff;"></i> Pesan Sekarang</a></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="300">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="400">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="500">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="600">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="700">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 my-2" data-aos="fade-up" data-aos-duration="800">
-                    <div class="card card-menu-list">
-                        <img src="{{ asset('frontend/images/menu-list/ca-creative-aDFj86NuvD8-unsplash.jpg') }}"
-                            class="card-img-top" alt="detail-menu-image" width="350px">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket Snack Box 1</h5>
-                            <p class="text-price my-2">Harga : Rp 8.000,00 / Kotak </p>
-                            <p class="text-price my-2">Minimal Order : 20 Kotak </p>
-                            <ul class="text-description">
-                                <li>Air Mineral Gelas</li>
-                                <li>Korket Ubi</li>
-                                <li>Kacang Goreng</li>
-                                <li>Permen</li>
-                            </ul>
-                            <div class="d-grid gap-2">
-                                <a href="https://wa.link/1n5yof" target="_blank" class="btn btn-order">
-                                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #ffffff;"></i> Pesan Sekarang
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @empty
+                        <h5 class="text-center text-danger" data-aos="fade-up">
+                            Anda Belum Menambahkan Menu Apapun!
+                        </h5>
+                    @endforelse
+                @endforeach --}}
+            </div>
+            <div class="row justify-content-start my-3">
+                {{ $foods->links() }}
             </div>
         </div>
     </section>

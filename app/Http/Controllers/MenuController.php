@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -11,6 +12,8 @@ class MenuController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pages.menu');
+        $categories = Category::paginate(8);
+
+        return view('pages.menu', compact('categories'));
     }
 }
