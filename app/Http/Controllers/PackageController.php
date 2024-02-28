@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -11,6 +12,7 @@ class PackageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pages.package');
+        $packages = Package::paginate(8);
+        return view('pages.package', compact('packages'));
     }
 }
