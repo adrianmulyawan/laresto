@@ -200,7 +200,8 @@
                                 $duration = 0;
                             @endphp
                             @foreach ($testimonials as $testi)
-                                <div class="col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="100">
+                                <div class="col-sm-12 col-md-6 col-lg-3" data-aos="fade-up"
+                                    data-aos-duration="{{ $duration += 100 }}">
                                     <div class="card card-service-list p-4">
                                         <img src="{{ Storage::url($testi->image) }}"
                                             class="rounded-circle user-photo mx-auto d-block" alt="card-icon">
